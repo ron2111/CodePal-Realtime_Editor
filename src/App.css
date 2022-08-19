@@ -95,7 +95,7 @@ background: #11926d;
   /* left column will take 230 px and right one will take all the available space */
   /* done to make the side tab of 230px
   and right column for editor space */
-  height: 100vh;
+  
 }
 
 .aside {

@@ -18,14 +18,15 @@ const Home = () => {
 
   const joinRoom = () => {
     if (!roomID || !username) {
-      toast.error("ROOM ID & USERNAME is required");
+      toast.error("Room ID & Username is required");
       return;
     }
 
     // Redirect
     navigate(`/editor/${roomID}`, {
       state: {
-        /* to access the username variable even in another state */ username,
+        /* to access the username variable even in another state */
+        username, // recieved in EditorPage.js use useLocation hook
       },
     });
   };
