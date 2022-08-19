@@ -1,0 +1,159 @@
+
+.homePageWrapper {
+  height: 100vh; /* increased height of homePageWrapper to align the form in vertical centre*/ 
+  display: flex;
+align-items: center;
+justify-content: center;
+color: #fff;
+}
+
+.formWrapper {
+  background-color: #002124;
+  padding: 20px;
+  border-radius: 20px;
+  width: 400px;
+  max-width: 90%;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+}
+
+footer a {
+  color: #37bc96;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainLabel {
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+.homePageLogo {
+height: 100px;
+margin-bottom: 30px;
+}
+
+.inputBox {
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  margin-bottom: 14px;
+  background: #eee;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.btn {
+   border: none;
+   padding: 10px;
+   border-radius:5px;
+   font-size: 16px;
+   transition: all 0.3s ease-in-out; /* little animation */
+   font-weight: bold;
+}
+
+.joinBtn, .leaveBtn {
+  background-color: #30c399;
+  width: 100px;
+  font-weight: bold;
+  margin-left: auto; /* to move completely to right side */
+}
+.joinBtn:hover, .leaveBtn:hover {
+background: #11926d;
+
+}
+
+.createInfo {
+  margin: 0 auto; /* centered */
+  margin-top: 20px;
+}
+
+.createNewBtn {
+ color: #30c399;
+ text-decoration: none; 
+ /* we need underline, but to modify it, first we need to make the text decoration, none */
+ font-weight: bold;
+ border-bottom: 1px solid #30c399;
+ transition: all 0.3s ease-in-out;
+}
+
+.createNewBtn:hover, footer a:hover {
+  color: #11926d;
+  border-color: #11926d;
+}
+
+.mainWrap {
+  display: grid;
+  grid-template-columns: 230px 1fr; 
+  /* left column will take 230 px and right one will take all the available space */
+  /* done to make the side tab of 230px
+  and right column for editor space */
+  height: 100vh;
+}
+
+.aside {
+    background: #001719;
+    padding: 16px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    /* to keep the button 1 on 1 vertically */
+}
+
+.asideInner {
+  flex: 1;
+}
+
+.clientsList {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+      /* to accomaodate clients vertically, if not able to fit horizontally */
+  gap: 20px;
+
+}
+
+.client {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+}
+
+.userName {
+  margin-top: 10px;
+}
+
+.logo {
+  border-bottom: 1px solid #424242; 
+  /* line beside the logo */
+  padding-bottom: 10px;
+}
+
+.logoImage {
+  height: 60px;
+  
+}
+
+.leaveBtn {
+  width: 100%; 
+  /* used same properties of join btn, so width needed to be 100% */
+  margin-top: 20px;
+
+}
+
+.CodeMirror {
+  /* Overwritting the inbuilt CSS of codemirror package, where class name is : Codemirror */
+  min-height: calc(100vh - 20px); 
+  /* 20px reduced as there is an extra space of 20px which would cause scroll  */
+  font-size: 20px;
+  line-height: 1.6;
+  padding-top: 20px;
+}
