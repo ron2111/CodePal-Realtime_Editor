@@ -64,16 +64,18 @@ io.on("connection", (socket) => {
     io.to(socketId).emit(ACTIONS.CODE_CHANGE, { code });
   });
 
+  // Diconnected/Leaving the room / Closing the browser event------------------------
   socket.on("disconnecting", () => {
-    const rooms = [...socket.rooms];
+    const rooms = [...socket.rooms]; // rooms of the current socket
     rooms.forEach((roomId) => {
       socket.in(roomId).emit(ACTIONS.DISCONNECTED, {
+        // Notify everyone inside the room which haven't left: 'in' method used.
         socketId: socket.id,
         username: userSocketMap[socket.id],
       });
     });
-    delete userSocketMap[socket.id];
-    socket.leave();
+    delete userSocketMap[socket.id]; // delete the mapping
+    socket.leave(); // removing/leaving the socket
   });
 });
 

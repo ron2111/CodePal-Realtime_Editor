@@ -48,7 +48,7 @@ const EditorPage = () => {
         // '?' used in the newer syntax of JS which will help in avoiding error if username not found
       });
 
-      // Listening for joined event
+      // Listening for joined event-----------------------------------------
       socketRef.current.on(
         ACTIONS.JOINED,
         ({ clients, username, socketId }) => {
@@ -66,19 +66,24 @@ const EditorPage = () => {
         }
       );
 
-      // Listening for disconnected
+      // Listening for disconnected event-------------------------
       socketRef.current.on(ACTIONS.DISCONNECTED, ({ socketId, username }) => {
         toast.success(`${username} left the room.`);
+        // state updation
         setClients((prev) => {
+          // remaking/ filtering the clients list. (after removal)
           return prev.filter((client) => client.socketId !== socketId);
         });
       });
     };
     init(); // called init
+
+    // cleaning function- to clear listeners- prevents memory leak
     return () => {
-      socketRef.current.disconnect();
-      socketRef.current.off(ACTIONS.JOINED);
-      socketRef.current.off(ACTIONS.DISCONNECTED);
+      // function returned in useEffect
+      socketRef.current.disconnect(); // socket connection needs to be disconnected
+      socketRef.current.off(ACTIONS.JOINED); // unsubcribe the joining event
+      socketRef.current.off(ACTIONS.DISCONNECTED); // unsubcribe the disconnected event
     };
   }, []); // this empty array is dependancy array.  It simply means that the hook will only trigger once when the component is first rendered. So for example, for useEffect it means the callback will run once at the beginning of the lifecycle of the component and never again
 
