@@ -9,7 +9,7 @@ import "codemirror/addon/edit/closebrackets";
 import ACTIONS from "../Actions";
 
 const Editor = ({ socketRef, roomId, onCodeChange }) => {
-  const editorRef = useRef(null);
+  const editorRef = useRef(null); // TO store/capture the editor
   useEffect(() => {
     async function init() {
       // initialization function to be run only 1 time
@@ -26,11 +26,15 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
       );
 
       editorRef.current.on("change", (instance, changes) => {
-        const { origin } = changes;
-        const code = instance.getValue();
+        // event listener on editorRef, to capture change. We get the instance and changed in the callback.
+        const { origin } = changes; // origin gives us the info about test written(for ex: cut, copy, paste, +input: inicates that there is some input)
+
+        // to dynamically add text, or some pre written text, we can use setValue() method with useref
+        const code = instance.getValue(); // all the content inside the editor
         onCodeChange(code);
         if (origin !== "setValue") {
           socketRef.current.emit(ACTIONS.CODE_CHANGE, {
+            // emits the code change event using socket Ref
             roomId,
             code,
           });
@@ -42,9 +46,12 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
 
   useEffect(() => {
     if (socketRef.current) {
+      // if socketRef.current is not null
+      // listening on soketRef as we need to send in socket
       socketRef.current.on(ACTIONS.CODE_CHANGE, ({ code }) => {
         if (code !== null) {
-          editorRef.current.setValue(code);
+          // if there is some code
+          editorRef.current.setValue(code); // the set the same code in all of the other clients's editors using editorRef
         }
       });
     }

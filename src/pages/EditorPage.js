@@ -127,7 +127,7 @@ const EditorPage = () => {
         </button>
       </div>
       <div className="editorWrap">
-        <Editor
+        <Editor // passed the props: socketRef with room ID & a fucntion
           socketRef={socketRef}
           roomId={roomId}
           onCodeChange={(code) => {

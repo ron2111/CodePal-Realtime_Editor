@@ -55,12 +55,13 @@ io.on("connection", (socket) => {
       });
     });
   });
-
+  // code change event listening -----------------------------------------------------
   socket.on(ACTIONS.CODE_CHANGE, ({ roomId, code }) => {
-    socket.in(roomId).emit(ACTIONS.CODE_CHANGE, { code });
+    socket.in(roomId).emit(ACTIONS.CODE_CHANGE, { code }); // socket.in used instead of io.to as the latter will overwrite the code for every client including the current editor and that will prevent the cursor from moving
   });
 
   socket.on(ACTIONS.SYNC_CODE, ({ socketId, code }) => {
+    // emitting on room, will reach to all the clients
     io.to(socketId).emit(ACTIONS.CODE_CHANGE, { code });
   });
 
