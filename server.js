@@ -9,8 +9,11 @@ const server = http.createServer(app); // server created with express server obj
 const io = new Server(server);
 // -----------------------------Server Creation Done----------------------------------
 
+//----Serving through the build folder--
 app.use(express.static("build"));
+// to counter the request sent to server after refreshing
 app.use((req, res, next) => {
+  // we will redirect to the index.html on any request
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
