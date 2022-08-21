@@ -31,7 +31,7 @@ const Editor = ({ socketRef, roomId, onCodeChange }) => {
 
         // to dynamically add text, or some pre written text, we can use setValue() method with useref
         const code = instance.getValue(); // all the content inside the editor
-        onCodeChange(code);
+        onCodeChange(code); // code sync function
         if (origin !== "setValue") {
           socketRef.current.emit(ACTIONS.CODE_CHANGE, {
             // emits the code change event using socket Ref

@@ -62,7 +62,7 @@ io.on("connection", (socket) => {
 
   socket.on(ACTIONS.SYNC_CODE, ({ socketId, code }) => {
     // emitting on room, will reach to all the clients
-    io.to(socketId).emit(ACTIONS.CODE_CHANGE, { code });
+    io.to(socketId).emit(ACTIONS.CODE_CHANGE, { code }); // specifically emitting for the new socketId joinee to sync the code
   });
 
   // Diconnected/Leaving the room / Closing the browser event------------------------

@@ -17,7 +17,7 @@ const EditorPage = () => {
   //     If we tried to count how many times our application renders using the useState Hook, we would be caught in an infinite loop since this Hook itself causes a re-render.
   // To avoid this, we can use the useRef Hook.
 
-  const codeRef = useRef(null);
+  const codeRef = useRef(null); // to sync code, useRef is used with default value null as useState will re-render on every key stroke / state chnange.
   const location = useLocation(); // hook to get data even in another state
   const { roomId } = useParams(); //returns all our params,spelling should be same as in App.js router declaration. Directly got the room ID using destructuring
   const reactNavigator = useNavigate(); //The useNavigate hook returns a function that lets you navigate programmatically, for example after a form is submitted.
@@ -60,8 +60,9 @@ const EditorPage = () => {
           }
           setClients(clients); // setting the clients-list, to get the names/avatar of clients name under the connected tab
           socketRef.current.emit(ACTIONS.SYNC_CODE, {
-            code: codeRef.current,
-            socketId,
+            // as soon as some new user joins the room, we need to sync it
+            code: codeRef.current, // updated code stored in code property
+            socketId, // sending coketId as we need to sync only for the curretn joinee
           });
         }
       );
@@ -137,6 +138,7 @@ const EditorPage = () => {
           socketRef={socketRef}
           roomId={roomId}
           onCodeChange={(code) => {
+            // as soon as the code changes we need to change the state of codeRef to the updated code using this func, sent to Editor component
             codeRef.current = code;
           }}
         />
