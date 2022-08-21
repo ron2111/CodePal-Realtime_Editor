@@ -99,6 +99,11 @@ const EditorPage = () => {
     }
   }
 
+  function leaveRoom() {
+    // leave Romm func
+    reactNavigator("/"); // redicrecting to homePage
+  }
+
   if (!location.state) {
     return <Navigate to="/" />;
   }
