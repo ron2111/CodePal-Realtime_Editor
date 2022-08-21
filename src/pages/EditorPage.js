@@ -88,17 +88,15 @@ const EditorPage = () => {
   }, []); // this empty array is dependancy array.  It simply means that the hook will only trigger once when the component is first rendered. So for example, for useEffect it means the callback will run once at the beginning of the lifecycle of the component and never again
 
   async function copyRoomId() {
+    // room ID copyfunction
     try {
-      await navigator.clipboard.writeText(roomId);
+      await navigator.clipboard.writeText(roomId); // navigator api
+      // can be used to get camera, microphone and text copying
       toast.success("Room ID has been copied to your clipboard");
     } catch (err) {
-      toast.error("Could not copy the Room ID");
+      toast.error("Could not copy the Room ID"); // error msg
       console.error(err);
     }
-  }
-
-  function leaveRoom() {
-    reactNavigator("/");
   }
 
   if (!location.state) {
@@ -119,9 +117,12 @@ const EditorPage = () => {
             ))}
           </div>
         </div>
+        {/* room ID btn */}
         <button className="btn copyBtn" onClick={copyRoomId}>
           Copy ROOM ID
         </button>
+
+        {/* Leave room btn */}
         <button className="btn leaveBtn" onClick={leaveRoom}>
           Leave
         </button>
