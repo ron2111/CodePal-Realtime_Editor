@@ -1,3 +1,3 @@
 # CodePal Realtime Code Editor
-- A collaboration tool built using ReactJs, NodeJs, Express Server , Socket.io & deployed on Heroku
-## Live Site: [codepal-realtime-editor.herokuapp.com](https://codepal-realtime-editor.herokuapp.com/)
+- A collaboration tool built using ReactJs, NodeJs, Express Server , Socket.io & deployed on Netlify
+## Live Site: [https://codepal-realtime.netlify.app/](https://codepal-realtime.netlify.app//)
